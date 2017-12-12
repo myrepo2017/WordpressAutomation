@@ -1,9 +1,9 @@
 package WordpressTests;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
+
 import Pages.LoginPage;
 
 public class LoginTests
@@ -11,24 +11,15 @@ public class LoginTests
 	
 	
 	@Test
-	public void LoginTest()
+	public void Login_Test_With_Valid_User()
 	{
+		System.setProperty("webdriver.chrome.driver","C:\\CD\\chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
-		driver.manage().window().maximize();
+		//driver.manage().window().maximize();
+		driver.get("http://localhost:5369/wp-login.php");
+		
 		LoginPage loginPage = new LoginPage(driver);
-		LoginPage.GoTo();
 		
+	    loginPage.LoginAs("admin").WithPassword("password1").Login();
 	}
-	
-	
-	
-	/*@Test
-	public static void LaunchGoogle()
-	{
-		
-	    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-	    driver.findElement(By.id("user_login")).sendKeys("admin");;
-	    driver.findElement(By.id("user_pass")).sendKeys("password1");
-	    driver.findElement(By.id("wp-submit")).click();
-	}*/
 }
